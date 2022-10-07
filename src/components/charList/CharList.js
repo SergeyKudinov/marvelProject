@@ -5,7 +5,7 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 import PropTypes from 'prop-types';
 
-const CharList = () => {
+const CharList = (props) => {
 
     const [charList, setCharList] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -68,15 +68,15 @@ const CharList = () => {
                 <li className='char__item'
                     key={item.id}
                     tabIndex={0}
-                    ref={el => itemRefs[i] = el}
+                    ref={el => itemRefs.current[i] = el}
                     onClick={() => {
-                        this.props.onCharSelected(item.id);
-                        this.focusOnItem(i);
+                        props.onCharSelected(item.id);
+                        focusOnItem(i);
                     }}
                     onKeyPress={(e) => {
                         if (e.key === ' ' || e.key === 'Enter') {
-                            this.props.onCharSelected(item.id);
-                            this.focusOnItem(i);
+                            props.onCharSelected(item.id);
+                            focusOnItem(i);
                         }
                     }}
                 >
